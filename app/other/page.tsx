@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useJobData } from "../hooks/getJobs";
 import JobCard from "./JobCard";
 import JobCardList from "./JobCardList";
+import { useOpenAI } from "../hooks/getAIResponse";
 
 const JobsList = () => {
   const { jobs, isLoading, error } = useJobData();

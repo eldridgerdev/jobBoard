@@ -4,6 +4,7 @@ import {
   Collapse,
   IconButton,
   IconButtonProps,
+  Stack,
   styled,
   Typography,
 } from "@mui/material";
@@ -11,6 +12,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import React from "react";
+import { useOpenAI } from "../hooks/getAIResponse";
 
 interface Job {
   id: string;
@@ -21,6 +23,19 @@ interface Job {
 interface ExpandDescProps extends IconButtonProps {
   expand: boolean;
 }
+
+const JobDescription = ({ job }) => {
+  const { message, isLoading, error } = useOpenAI(job.description);
+
+  if (isLoading) {
+    return "Retrieving job description...";
+  }
+  if (error) {
+    return "Error retrieving job description";
+  }
+
+  return message;
+};
 
 const ExpandDesc = styled((props: ExpandDescProps) => {
   const { expand, ...other } = props;
@@ -70,8 +85,10 @@ export default function JobCard({ job }: { job: Job }) {
           </CardActions>
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
-              <Typography sx={{ color: "text.secondary" }}>
-                {job.description}
+              <Typography
+                sx={{ color: "text.secondary", whiteSpace: "pre-line" }}
+              >
+                <JobDescription job={job} />
               </Typography>
             </CardContent>
           </Collapse>
