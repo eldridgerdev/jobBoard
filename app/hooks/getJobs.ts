@@ -2,8 +2,8 @@ import { useAPI } from "./getAPI";
 const JOBS_API_HOST = "jobs-api14.p.rapidapi.com";
 const JOBS_API = `${JOBS_API_HOST}/list`;
 
-// @TODO: Use env
-const API_KEY = "8916bce6a4msh2ab8f62f7285a2cp1a7b24jsn7e0e2eed9d01";
+const API_KEY = process.env.NEXT_PUBLIC_RAPID_API_KEY;
+const OPENAPI_KEY = process.env.NEXT_PUBLIC_OPEN_API_KEY;
 
 const opts = {
   method: "GET",
