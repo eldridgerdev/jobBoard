@@ -1,6 +1,8 @@
 "use client";
 import Image from "next/image";
-import { useJobData } from "./hooks/getJobs";
+import { useJobData } from "../hooks/getJobs";
+import JobCard from "./JobCard";
+import JobCardList from "./JobCardList";
 
 const JobsList = () => {
   const { jobs, isLoading, error } = useJobData();
@@ -13,27 +15,15 @@ const JobsList = () => {
     return <div>Error retrieving jobs</div>;
   }
   console.log(jobs);
-  return (
-    <div>
-      <ul>
-        {jobs.map((job) => (
-          <li key={job.id}>
-            <div>{job.company}</div>
-            <div>{job.title}</div>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+
+  return <JobCardList jobs={jobs} />;
 };
 
 const Main = () => {
   return (
-    <>
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <JobsList />
-      </main>
-    </>
+    <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+      <JobsList />
+    </main>
   );
 };
 
