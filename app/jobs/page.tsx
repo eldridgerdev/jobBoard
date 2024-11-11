@@ -1,3 +1,4 @@
+import Hero from "../other/Hero";
 import JobCardList from "../other/JobCardList";
 import { getAIResponse } from "../services/getAiResponse";
 import { getJobs } from "../services/getJobs";
@@ -19,6 +20,7 @@ export default async function JobPostingsPage() {
   );
   return (
     <>
+      {// <Hero></Hero> }
       <h1>JobPostingsPage</h1>
       <JobCardList jobs={updatedJobs} />
     </>
