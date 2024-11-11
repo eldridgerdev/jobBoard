@@ -1,3 +1,7 @@
+## TODO
+
+- [] Fix API keys, they shouldn't have to be NEXT_PUBLIC anymore because they are server components
+
 ## ENV
 
 Add to .env file
