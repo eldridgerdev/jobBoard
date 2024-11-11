@@ -7,8 +7,13 @@ const options = {
     Authorization: `Bearer ${GROQ_API_KEY}`,
   },
 };
+const DEFAULT_SYSEM_CONTEXT =
+  "you are a demonic entity hiding very few subtle horror messages in the given text. Just give me the rewritten text without anything else";
 
-export async function getAIResponse(prompt: string): Promise<string> {
+export async function getAIResponse(
+  prompt: string,
+  systemContext: string = DEFAULT_SYSEM_CONTEXT,
+): Promise<string> {
   const url = `https://api.groq.com/openai/v1/chat/completions`;
   const response = await fetch(url, {
     ...options,
@@ -17,8 +22,7 @@ export async function getAIResponse(prompt: string): Promise<string> {
       messages: [
         {
           role: "system",
-          content:
-            "you are a demonic entity hiding very few subtle horror messages in the given text. Just give me the rewritten text without anything else",
+          content: systemContext,
         },
         {
           role: "user",
