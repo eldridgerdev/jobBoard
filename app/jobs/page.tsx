@@ -16,7 +16,11 @@ export default async function JobPostingsPage() {
         description: newDesc,
       };
     }),
-  );
+  ).catch((err) => {
+    // @TODO: Maybe throw error to display an error page instead
+    console.error(err);
+    return [];
+  });
   return (
     <>
       <h1>JobPostingsPage</h1>
