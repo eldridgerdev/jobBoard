@@ -4,6 +4,8 @@ import { useJobData } from "../hooks/getJobs";
 import JobCard from "./JobCard";
 import JobCardList from "./JobCardList";
 import { useOpenAI } from "../hooks/getAIResponse";
+import { Typography } from "@mui/material";
+import Hero from "./Hero";
 
 const JobsList = () => {
   const { jobs, isLoading, error } = useJobData();
@@ -13,6 +15,9 @@ const JobsList = () => {
   }
 
   if (!jobs || jobs.length === 0 || error) {
+    if (error?.message) {
+      return <div>{error.message}</div>;
+    }
     return <div>Error retrieving jobs</div>;
   }
   console.log(jobs);
@@ -23,6 +28,7 @@ const JobsList = () => {
 const Main = () => {
   return (
     <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+      <Hero />
       <JobsList />
     </main>
   );

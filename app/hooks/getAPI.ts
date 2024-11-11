@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
 export const useAPI = (
-  host: string,
   url: string,
-  options?: AxiosRequestConfig,
+  options?: any,
 ): { data: any; isLoading: boolean; error: Error | null } => {
   const [data, setData] = useState<null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -14,8 +12,14 @@ export const useAPI = (
     setIsLoading(true);
 
     try {
-      const response: AxiosResponse = await axios(`https://${url}`, options);
-      setData(response.data);
+      const res = await fetch(url, options);
+      const jobData = await res.json();
+
+      if (!res.ok) {
+        // @TODO: Displaying the error message to the frontend is not ideal in prod.
+        throw new Error(jobData.message);
+      }
+      setData(jobData);
     } catch (error) {
       setError(error);
     }

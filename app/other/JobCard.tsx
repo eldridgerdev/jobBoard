@@ -1,45 +1,33 @@
+"use client";
 import {
   CardActionArea,
   CardActions,
   Collapse,
-  IconButton,
-  IconButtonProps,
-  Stack,
+  Icon,
+  IconProps,
   styled,
   Typography,
 } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import React from "react";
-import { useOpenAI } from "../hooks/getAIResponse";
+import React, { PropsWithChildren } from "react";
 
 interface Job {
+  company: string;
   id: string;
   title: string;
   description: string;
 }
 
-interface ExpandDescProps extends IconButtonProps {
+interface ExpandDescProps extends PropsWithChildren, IconProps {
   expand: boolean;
 }
 
-const JobDescription = ({ job }) => {
-  const { message, isLoading, error } = useOpenAI(job.description);
-
-  if (isLoading) {
-    return "Retrieving job description...";
-  }
-  if (error) {
-    return "Error retrieving job description";
-  }
-
-  return message;
-};
-
 const ExpandDesc = styled((props: ExpandDescProps) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { expand, ...other } = props;
-  return <IconButton {...other} />;
+  return <Icon {...other} />;
 })(({ theme }) => ({
   marginLeft: "auto",
   transition: theme.transitions.create("transform", {
@@ -47,13 +35,13 @@ const ExpandDesc = styled((props: ExpandDescProps) => {
   }),
   variants: [
     {
-      props: ({ expand }) => !expand,
+      props: ({ expand }: ExpandDescProps) => !expand,
       style: {
         transform: "rotate(0deg)",
       },
     },
     {
-      props: ({ expand }) => !!expand,
+      props: ({ expand }: ExpandDescProps) => !!expand,
       style: {
         transform: "rotate(180deg)",
       },
@@ -61,9 +49,36 @@ const ExpandDesc = styled((props: ExpandDescProps) => {
   ],
 }));
 
-export default function JobCard({ job }: { job: Job }) {
+type JobCardProps = {
+  job: Job;
+  skipAi: boolean;
+};
+
+export default function JobCard({ job }: JobCardProps) {
   const [expanded, setExpanded] = React.useState(false);
   const handleExpandClick = () => setExpanded(!expanded);
+  /*
+  const JobDescription = ({ description }: { description: string }) => {
+    const { message, isLoading, error } = useAI(description);
+
+    if (isLoading) {
+      return "Retrieving job description...";
+    }
+    if (error) {
+      return "Error retrieving job description";
+    }
+
+    return message;
+  };
+*/
+  const AIDesc = () => {
+    /*
+    if (!skipAi) {
+      return <JobDescription description={job.description} />;
+    }*/
+
+    return <span>{job.description}</span>;
+  };
 
   return (
     <Card variant="outlined" sx={{ minWidth: 275 }} onClick={handleExpandClick}>
@@ -72,7 +87,7 @@ export default function JobCard({ job }: { job: Job }) {
           <Typography variant="h5" sx={{ mb: 1.5 }}>
             {job.title}
           </Typography>
-          <Typography>Company Name Here</Typography>
+          <Typography>{job.company}</Typography>
           <CardActions disableSpacing>
             <ExpandDesc
               expand={expanded}
@@ -88,7 +103,7 @@ export default function JobCard({ job }: { job: Job }) {
               <Typography
                 sx={{ color: "text.secondary", whiteSpace: "pre-line" }}
               >
-                <JobDescription job={job} />
+                <AIDesc />
               </Typography>
             </CardContent>
           </Collapse>

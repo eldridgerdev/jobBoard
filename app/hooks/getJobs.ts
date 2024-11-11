@@ -1,22 +1,17 @@
 import { useAPI } from "./getAPI";
 const JOBS_API_HOST = "jobs-api14.p.rapidapi.com";
-const JOBS_API = `${JOBS_API_HOST}/list`;
+// const JOBS_API_HOST = "fresh-linkedin-profile-data.p.rapidapi.com";
+const JOBS_API = `${JOBS_API_HOST}`;
 
 const API_KEY = process.env.NEXT_PUBLIC_RAPID_API_KEY;
-const OPENAPI_KEY = process.env.NEXT_PUBLIC_OPEN_API_KEY;
 
 const opts = {
   method: "GET",
   url: `https://${JOBS_API}`,
-  params: {
-    query: "Web Developer",
+  data: {
+    keywords: "Web Developer",
     location: "United States",
-    distance: "1.0",
-    language: "en_US",
-    remoteOnly: "true",
-    datePosted: "day",
-    employmentTypes: "fulltime;parttime;contractor",
-    index: "0",
+    distance: 1,
   },
   headers: {
     "x-rapidapi-host": JOBS_API_HOST,
@@ -24,7 +19,7 @@ const opts = {
   },
 };
 
-type Job = {
+interface Job {
   id: string;
   company: string;
   description: string;
@@ -35,16 +30,26 @@ type Job = {
       url: string;
     },
   ];
-};
-type Jobs = Job[];
-type JobData = {
-  jobs: Jobs;
+}
+interface JobData {
+  jobs: Job[];
   isLoading: boolean;
   error: Error | null;
-};
+}
 
 export const useJobData = (): JobData => {
-  const { data, isLoading, error } = useAPI(JOBS_API_HOST, JOBS_API, opts);
+  const query = `query=${opts.data.keywords}`;
+  const location = `&location=${opts.data.location}`;
+  const distance = `&distance=${opts.data.distance}`;
+  const language = `&language=en_US`;
+  const remote = `&remote`;
+
+  const url = `https://${JOBS_API}/list?${query}${location}${distance}${language}${remote}`;
+  const { data, isLoading, error } = useAPI(url, {
+    method: "GET",
+    headers: opts.headers,
+  });
+  console.log(data);
   return {
     jobs: !data
       ? []
