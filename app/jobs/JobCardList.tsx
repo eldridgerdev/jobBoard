@@ -1,8 +1,8 @@
 "use client";
 import { Grid2 } from "@mui/material";
-import JobCard from "./JobCard";
-import { Job } from "../jobs/types";
+import { Job } from "./types";
 import { useEffect, useState } from "react";
+import JobCard from "./JobCard";
 
 export default function JobCardList({ jobs }: { jobs: Job[] }) {
   const [hydrated, setHydrated] = useState(false);
