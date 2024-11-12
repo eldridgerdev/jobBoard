@@ -12,7 +12,6 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import React, { PropsWithChildren } from "react";
-import { Job } from "./types";
 
 interface ExpandDescProps extends PropsWithChildren, IconProps {
   expand: boolean;

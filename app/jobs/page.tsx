@@ -1,4 +1,4 @@
-import JobCardList from "../components/JobCardList";
+import JobCardList from "./JobCardList";
 import { getAIResponse } from "../services/getAiResponse";
 import { getJobs } from "../services/getJobs";
 
