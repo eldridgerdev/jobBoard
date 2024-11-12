@@ -9,6 +9,7 @@ export default function JobCardList({ jobs }: { jobs: Job[] }) {
 
   // useEffect is called after hydration,
   //   use this to render JobCards after SSR hydration because they are dynamic
+  //   @TODO: Look into suspense
   useEffect(() => {
     setHydrated(true);
   }, []);

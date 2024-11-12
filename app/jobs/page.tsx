@@ -2,8 +2,16 @@ import JobCardList from "./JobCardList";
 import { getAIResponse } from "../services/getAiResponse";
 import { getJobs } from "../services/getJobs";
 
-export default async function JobPostingsPage() {
-  const jobs = await getJobs();
+type PageParams = {
+  searchParams: Promise<{ [key: string]: string | undefined }>;
+};
+export default async function JobPostingsPage({ searchParams }: PageParams) {
+  const params = await searchParams;
+  const jobs = await getJobs({
+    data: {
+      query: params.query,
+    },
+  });
 
   // @TODO: Make less Groq calls by updating the description later
   //   - Make Jobs a side menu or different route instead of expanded card.
@@ -11,6 +19,7 @@ export default async function JobPostingsPage() {
   const updatedJobs = await Promise.all(
     jobs.map(async (job) => {
       const newDesc = await getAIResponse(job.description);
+      // const newDesc = "debugging";
       return {
         ...job,
         description: newDesc,

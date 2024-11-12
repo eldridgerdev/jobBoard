@@ -19,7 +19,7 @@ const data: JobsApiOptions = {
   distance: 1,
 };
 
-const opts = {
+const defaultOpts = {
   method: "GET",
   url: `https://${JOBS_API_HOST}`,
   data,
@@ -29,17 +29,35 @@ const opts = {
   },
 };
 
-const query = `query=${opts.data.query}`;
-const location = `&location=${opts.data.location}`;
-const distance = `&distance=${opts.data.distance}`;
-const language = `&language=en_US`;
-const remote = `&remote`;
-
-export async function getJobs(): Promise<Job[]> {
+interface GetJobsOpts {
+  method?: string;
+  url?: string;
+  headers?: HeadersInit;
+  data: {
+    query?: string;
+    location?: string;
+    distance?: number;
+  };
+}
+const empty = { data: {} };
+export async function getJobs(jobOpts: GetJobsOpts = empty): Promise<Job[]> {
+  const options = {
+    ...defaultOpts,
+    ...jobOpts,
+    data: {
+      ...defaultOpts.data,
+      ...jobOpts.data,
+    },
+  };
+  const query = `query=${options.data.query}`;
+  const location = `&location=${options.data.location}`;
+  const distance = `&distance=${options.data.distance}`;
+  const language = `&language=en_US`;
+  const remote = `&remote`;
   const url = `https://${JOBS_API_HOST}/list?${query}${location}${distance}${language}${remote}`;
   const response = await fetch(url, {
     method: "GET",
-    headers: opts.headers as HeadersInit,
+    headers: options.headers as HeadersInit,
   });
   const data = await response.json();
   return data.jobs;
