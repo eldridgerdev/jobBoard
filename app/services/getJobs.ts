@@ -40,7 +40,7 @@ interface GetJobsOpts {
   };
 }
 const empty = { data: {} };
-export async function getJobs(jobOpts: GetJobsOpts = empty): Promise<Job[]> {
+export async function getJobs(jobOpts?: GetJobsOpts = empty): Promise<Job[]> {
   const options = {
     ...defaultOpts,
     ...jobOpts,

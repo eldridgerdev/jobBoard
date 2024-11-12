@@ -7,11 +7,8 @@ type PageParams = {
 };
 export default async function JobPostingsPage({ searchParams }: PageParams) {
   const params = await searchParams;
-  const jobs = await getJobs({
-    data: {
-      query: params.query,
-    },
-  });
+  const opts = params.query ? { data: { query: params.query } } : undefined;
+  const jobs = await getJobs(opts);
 
   // @TODO: Make less Groq calls by updating the description later
   //   - Make Jobs a side menu or different route instead of expanded card.
@@ -26,7 +23,7 @@ export default async function JobPostingsPage({ searchParams }: PageParams) {
       };
     }),
   ).catch((err) => {
-    // @TODO: Maybe throw error to display an error page instead
+    // @TODO: Throw error to display an error page instead
     console.error(err);
     return [];
   });
