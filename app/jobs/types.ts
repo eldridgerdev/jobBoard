@@ -5,7 +5,7 @@ export interface Job {
   title: string;
   jobProviders: [
     {
-      jobProivider: string;
+      jobProvider: string;
       url: string;
     },
   ];

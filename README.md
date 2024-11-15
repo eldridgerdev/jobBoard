@@ -1,3 +1,5 @@
+Playing with my silly idea for a job board
+
 ## TODO
 
 - [ ] Fix API keys, they shouldn't have to be NEXT_PUBLIC anymore because they are server components

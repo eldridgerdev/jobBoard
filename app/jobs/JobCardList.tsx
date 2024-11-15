@@ -4,7 +4,7 @@ import { Job } from "./types";
 import { useEffect, useState } from "react";
 import JobCard from "./JobCard";
 
-export default function JobCardList({ jobs }: { jobs: Job[] }) {
+export default function JobCardList({ jobs }: { jobs: Job[] | [] }) {
   const [hydrated, setHydrated] = useState(false);
 
   // useEffect is called after hydration,
