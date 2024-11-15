@@ -3,7 +3,6 @@ Playing with my silly idea for a job board
 ## TODO
 
 - [ ] Fix API keys, they shouldn't have to be NEXT_PUBLIC anymore because they are server components
-- [ ] Consider moving JobListings/Jobs components, they will only ever be used in the jobs page
 
 ## ENV
 
