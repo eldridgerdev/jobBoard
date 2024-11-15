@@ -5,6 +5,7 @@ import {
   Button,
   Container,
   IconButton,
+  Link,
   Menu,
   MenuItem,
   Toolbar,
@@ -12,9 +13,10 @@ import {
 } from "@mui/material";
 import AdbIcon from "@mui/icons-material/Adb";
 import MenuIcon from "@mui/icons-material/Menu";
+import NextLink from "next/link";
 
 const pages = [
-  { title: "Home", href: "" },
+  { title: "Home", href: "/" },
   { title: "Jobs", href: "/jobs" },
   { title: "Search", href: "/search" },
 ];
@@ -128,8 +130,9 @@ const Pages = () => {
       {pages.map((page) => (
         <Button
           key={page.title}
-          onClick={handleCloseNavMenu}
           sx={{ my: 2, color: "white", display: "block" }}
+          component={NextLink}
+          href={page.href}
         >
           {page.title}
         </Button>
