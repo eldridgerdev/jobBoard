@@ -5,7 +5,6 @@ import {
   Button,
   Container,
   IconButton,
-  Link,
   Menu,
   MenuItem,
   Toolbar,
@@ -122,9 +121,6 @@ const SmallScreenNav = () => {
 };
 
 const Pages = () => {
-  const handleCloseNavMenu = () => {
-    console.log("nav closed");
-  };
   return (
     <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
       {pages.map((page) => (
@@ -144,17 +140,15 @@ const Pages = () => {
 // @TODO: Getting hydration errors
 export default function Header() {
   return (
-    <>
-      <AppBar position="static">
-        <Container maxWidth="xl">
-          <Toolbar disableGutters>
-            <HomeButton />
-            <SmallScreenNav />
-            <SmallScreenHomeButton />
-            <Pages />
-          </Toolbar>
-        </Container>
-      </AppBar>
-    </>
+    <AppBar position="static">
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <HomeButton />
+          <SmallScreenNav />
+          <SmallScreenHomeButton />
+          <Pages />
+        </Toolbar>
+      </Container>
+    </AppBar>
   );
 }
