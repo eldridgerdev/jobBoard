@@ -24,7 +24,7 @@ Playing with my silly idea for a job board
 
 ## ENV
 
-- Get an API key from Groq AI and Rapid AI Jobs API
+- Get an API key from Groq AI and Rapid API Jobs API
   - <https://rapidapi.com/Pat92/api/jobs-api14>
   - <https://groq.com/>
 
