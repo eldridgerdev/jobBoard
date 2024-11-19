@@ -4,7 +4,7 @@ Playing with my silly idea for a job board
 
 ### Features
 
-- [x ] Set up basic animations
+- [x] Set up basic animations
 - [ ] Update header for small screens
 - [ ] Create a Landing Page
 - [ ] Make Job Cards open a side menu or load a new page so that the descriptions are only run through AI if they are clicked, not all of them.
