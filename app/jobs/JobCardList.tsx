@@ -11,7 +11,7 @@ export default function JobCardList({ jobs }: { jobs: Job[] | [] }) {
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            transition={{ delay: 0.05 * i }}
+            transition={{ type: "spring", bounce: "0.6", delay: 0.05 * i }}
           >
             <JobCard job={job} skipAi />
           </motion.div>
