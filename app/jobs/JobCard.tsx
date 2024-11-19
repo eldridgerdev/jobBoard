@@ -45,12 +45,22 @@ const ExpandDesc = styled((props: ExpandDescProps) => {
 
 interface JobCardProps {
   job: Job;
-  skipAi: boolean;
+  skipAi?: boolean;
+  onSpecialClick?: Function;
 }
 
-export default function JobCard({ job }: JobCardProps) {
+export default function JobCard({
+  job,
+  onSpecialClick = () => {},
+}: JobCardProps) {
   const [expanded, setExpanded] = React.useState(false);
-  const handleExpandClick = () => setExpanded(!expanded);
+  const handleExpandClick = () => {
+    if (job.special) {
+      onSpecialClick();
+    } else {
+      setExpanded(!expanded);
+    }
+  };
   /*
   const JobDescription = ({ description }: { description: string }) => {
     const { message, isLoading, error } = useAI(description);
@@ -75,7 +85,15 @@ export default function JobCard({ job }: JobCardProps) {
   };
 
   return (
-    <Card variant="outlined" sx={{ minWidth: 275 }} onClick={handleExpandClick}>
+    <Card
+      variant={job.special ? "elevation" : "outlined"}
+      sx={{
+        backgroundColor: job.special ? "lawngreen" : null,
+        minWidth: 275,
+      }}
+      onClick={handleExpandClick}
+      raised={job.special}
+    >
       <CardActionArea>
         <CardContent>
           <Typography variant="h5" sx={{ mb: 1.5 }}>
