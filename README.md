@@ -1,11 +1,12 @@
 Playing with my silly idea for a job board
 
-## TODO
+# TODO
 
-### Features
+## Features
 
 - [x] Set up basic animations
 - [ ] Update header for small screens
+- [ ] Update hero for small screens
 - [ ] Create a Landing Page
 - [ ] Make Job Cards open a side menu or load a new page so that the descriptions are only run through AI if they are clicked, not all of them.
   - [ ] Maybe bulk create shortened job descriptions for Cards
@@ -15,7 +16,7 @@ Playing with my silly idea for a job board
 - [ ] Create a custom color theme
 - [ ] Build
 
-### Bugs/Issues
+## Bugs/Issues
 
 - [ ] Fix API keys, they shouldn't have to be NEXT_PUBLIC anymore because they are server components
 - [ ] MUI might have issues with latest React, consider replacing or finding and fixing issue with peer dependencys
