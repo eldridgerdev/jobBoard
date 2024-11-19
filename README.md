@@ -1,6 +1,6 @@
 Playing with my silly idea for a job board
 
-## TODO:
+## TODO
 
 ### Features
 
@@ -23,8 +23,8 @@ Playing with my silly idea for a job board
 ## ENV
 
 - Get an API key from Groq AI and Rapid AI Jobs API
-  - https://rapidapi.com/Pat92/api/jobs-api14
-  - https://groq.com/
+  - <https://rapidapi.com/Pat92/api/jobs-api14>
+  - <https://groq.com/>
 
 Add to .env file
 
