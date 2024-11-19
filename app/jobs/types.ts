@@ -3,12 +3,14 @@ export interface Job {
   company: string;
   description: string;
   title: string;
-  jobProviders: [
-    {
-      jobProvider: string;
-      url: string;
-    },
-  ];
+  jobProviders:
+    | []
+    | [
+        {
+          jobProvider: string;
+          url: string;
+        },
+      ];
 }
 export interface JobData {
   jobs: Job[];

@@ -3,6 +3,7 @@ import { getAIResponse } from "../services/getAiResponse";
 import { getJobs } from "../services/getJobs";
 import { Job } from "./types";
 import Hero from "../components/Hero";
+import hiddenJob from "./hiddenJob";
 
 type PageParams = {
   searchParams: Promise<{ [key: string]: string | undefined }>;
@@ -30,14 +31,14 @@ export default async function JobPostingsPage({ searchParams }: PageParams) {
     return [];
   });
 
+  // Put hidden job in randomly
+  const r = Math.round(Math.random() * updatedJobs.length);
+  const j = [...updatedJobs.slice(0, r), hiddenJob, ...updatedJobs.slice(r)];
+
   return (
     <>
       <Hero />
-      {jobs.length > 0 ? (
-        <JobCardList jobs={updatedJobs} />
-      ) : (
-        <div>No Jobs found</div>
-      )}
+      {j.length > 0 ? <JobCardList jobs={j} /> : <div>No Jobs found</div>}
     </>
   );
 }
