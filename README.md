@@ -9,6 +9,7 @@ Playing with my silly idea for a job board
 - [ ] Create a Landing Page
 - [ ] Make Job Cards open a side menu or load a new page so that the descriptions are only run through AI if they are clicked, not all of them.
   - [ ] Maybe bulk create shortened job descriptions for Cards
+- [ ] Better loading page w/ animation
 - [ ] Error Page
 - [ ] 404 Page
 - [ ] Create a custom color theme
