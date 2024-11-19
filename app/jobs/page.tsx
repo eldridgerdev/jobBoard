@@ -18,7 +18,7 @@ export default async function JobPostingsPage({ searchParams }: PageParams) {
   //     - This should make more sense when doing a Groq AI call only for the needed desc.
   const updatedJobs = await Promise.all(
     jobs.map(async (job: Job): Promise<Job> => {
-      //      const newDesc = await getAIResponse(job.description);
+      // const newDesc = await getAIResponse(job.description);
       const newDesc = "debugging";
       return {
         ...job,
@@ -32,8 +32,12 @@ export default async function JobPostingsPage({ searchParams }: PageParams) {
   });
 
   // Put hidden job in randomly
-  const r = Math.round(Math.random() * updatedJobs.length);
-  const j = [...updatedJobs.slice(0, r), hiddenJob, ...updatedJobs.slice(r)];
+  const hiddenJobI = Math.round(Math.random() * updatedJobs.length);
+  const j = [
+    ...updatedJobs.slice(0, hiddenJobI),
+    hiddenJob,
+    ...updatedJobs.slice(hiddenJobI),
+  ];
 
   return (
     <>
