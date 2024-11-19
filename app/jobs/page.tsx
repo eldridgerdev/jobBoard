@@ -11,7 +11,6 @@ export default async function JobPostingsPage({ searchParams }: PageParams) {
   const params = await searchParams;
   const opts = params.query ? { data: { query: params.query } } : undefined;
   const jobs = (await getJobs(opts)) || [];
-  console.log(jobs);
 
   // @TODO: Make less Groq calls by updating the description later
   //   - Make Jobs a side menu or different route instead of expanded card.
@@ -30,6 +29,7 @@ export default async function JobPostingsPage({ searchParams }: PageParams) {
     console.error(err);
     return [];
   });
+
   return (
     <>
       <Hero />
