@@ -18,8 +18,7 @@ export default async function JobPostingsPage({ searchParams }: PageParams) {
   //     - This should make more sense when doing a Groq AI call only for the needed desc.
   const updatedJobs = await Promise.all(
     jobs.map(async (job: Job): Promise<Job> => {
-      // const newDesc = await getAIResponse(job.description);
-      const newDesc = "debugging";
+      const newDesc = job.description; // await getAIResponse(job.description);
       return {
         ...job,
         description: newDesc,

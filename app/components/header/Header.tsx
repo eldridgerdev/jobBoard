@@ -10,7 +10,8 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import AdbIcon from "@mui/icons-material/Adb";
+import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import FastfoodIcon from "@mui/icons-material/Fastfood";
 import MenuIcon from "@mui/icons-material/Menu";
 import NextLink from "next/link";
 
@@ -27,7 +28,7 @@ const pages: PageData[] = [
 const HomeButton = () => {
   return (
     <>
-      <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+      <FastfoodIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
       <Typography
         variant="h6"
         noWrap
@@ -52,7 +53,7 @@ const HomeButton = () => {
 const SmallScreenHomeButton = () => {
   return (
     <>
-      <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+      <FastfoodIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
       <Typography
         variant="h5"
         noWrap
