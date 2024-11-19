@@ -1,6 +1,5 @@
 import { Box, Container, Stack, Typography } from "@mui/material";
 
-// @TODO: Hydration issues
 export default function Hero() {
   return (
     <Box
