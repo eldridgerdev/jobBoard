@@ -88,7 +88,7 @@ export default function JobCard({
     <Card
       variant={job.special ? "elevation" : "outlined"}
       sx={{
-        backgroundColor: job.special ? "lawngreen" : null,
+        bgcolor: job.special ? "success.dark" : null,
         minWidth: 275,
       }}
       onClick={handleExpandClick}
