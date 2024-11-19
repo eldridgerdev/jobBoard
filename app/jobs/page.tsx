@@ -2,6 +2,7 @@ import JobCardList from "./JobCardList";
 import { getAIResponse } from "../services/getAiResponse";
 import { getJobs } from "../services/getJobs";
 import { Job } from "./types";
+import Hero from "../components/Hero";
 
 type PageParams = {
   searchParams: Promise<{ [key: string]: string | undefined }>;
@@ -31,7 +32,7 @@ export default async function JobPostingsPage({ searchParams }: PageParams) {
   });
   return (
     <>
-      <h1>JobPostingsPage</h1>
+      <Hero />
       {jobs.length > 0 ? (
         <JobCardList jobs={updatedJobs} />
       ) : (

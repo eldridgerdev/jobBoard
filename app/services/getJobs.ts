@@ -57,7 +57,6 @@ interface GetJobsOpts {
 const empty = { data: {} };
 export async function getJobs(jobOpts: GetJobsOpts = empty): Promise<Job[]> {
   // For testing
-  return testData;
   const options = {
     ...defaultOpts,
     ...jobOpts,
@@ -71,7 +70,7 @@ export async function getJobs(jobOpts: GetJobsOpts = empty): Promise<Job[]> {
   const distance = `&distance=${options.data.distance}`;
   const language = `&language=en_US`;
   const remote = `&remote`;
-  const url = `https://${JOBS_API_HOST}/list?${query}${location}${distance}${language}${remote}`;
+  const url = `https://${JOBS_API_HOST}/v2/list?${query}${location}${distance}${language}${remote}`;
   const response = await fetch(url, {
     method: "GET",
     headers: options.headers as HeadersInit,

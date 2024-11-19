@@ -1,10 +1,30 @@
 Playing with my silly idea for a job board
 
-## TODO
+## TODO:
+
+### Features
+
+- [ ] Set up basic animations
+- [ ] Create a Landing Page
+- [ ] Make Job Cards open a side menu or load a new page so that the descriptions are only run through AI if they are clicked, not all of them.
+  - [ ] Maybe bulk create shortened job descriptions for Cards
+- [ ] Error Page
+- [ ] 404 Page
+- [ ] Create a custom color theme
+- [ ] Build
+
+### Bugs/Issues
 
 - [ ] Fix API keys, they shouldn't have to be NEXT_PUBLIC anymore because they are server components
+- [ ] MUI might have issues with latest React, consider replacing or finding and fixing issue with peer dependencys
+
+# Project Setup
 
 ## ENV
+
+- Get an API key from Groq AI and Rapid AI Jobs API
+  - https://rapidapi.com/Pat92/api/jobs-api14
+  - https://groq.com/
 
 Add to .env file
 
