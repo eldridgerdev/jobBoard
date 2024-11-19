@@ -20,6 +20,7 @@ Playing with my silly idea for a job board
 
 - [ ] Fix API keys, they shouldn't have to be NEXT_PUBLIC anymore because they are server components
 - [ ] MUI might have issues with latest React, consider replacing or finding and fixing issue with peer dependencys
+- [ ] MUI docs mention SSR flicker, look into this as it first renders the wrong theme
 
 # Project Setup
 
