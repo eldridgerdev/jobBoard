@@ -1,6 +1,6 @@
 import { Box, Container, Stack, Typography } from "@mui/material";
 
-export default function Hero() {
+export default function Hero(): Element {
   return (
     <Box
       id="hero"

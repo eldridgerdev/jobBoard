@@ -14,7 +14,11 @@ import AdbIcon from "@mui/icons-material/Adb";
 import MenuIcon from "@mui/icons-material/Menu";
 import NextLink from "next/link";
 
-const pages = [
+interface PageData {
+  title: string;
+  href: string;
+}
+const pages: PageData[] = [
   { title: "Home", href: "/" },
   { title: "Jobs", href: "/jobs" },
   { title: "Search", href: "/search" },
