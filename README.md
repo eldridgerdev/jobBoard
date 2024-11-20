@@ -22,6 +22,10 @@ Playing with my silly idea for a job board
 - [ ] MUI might have issues with latest React, consider replacing or finding and fixing issue with peer dependencys
 - [ ] MUI docs mention SSR flicker, look into this as it first renders the wrong theme
 
+## Ideas
+
+- Split Special job in half invisible boxes for hover detection
+
 # Project Setup
 
 ## ENV

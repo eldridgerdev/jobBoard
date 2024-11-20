@@ -13,20 +13,22 @@ interface JobsApiOptions {
   distance: number;
 }
 
-const testData: Job[] = new Array(5).fill(undefined).map((job: Job, i): Job => {
-  return {
-    id: `${i}`,
-    title: "Title",
-    description: "Test Description",
-    company: "Test Company",
-    jobProviders: [
-      {
-        jobProvider: "test",
-        url: "/",
-      },
-    ],
-  };
-});
+export const testData: Job[] = new Array(5)
+  .fill(undefined)
+  .map((job: Job, i): Job => {
+    return {
+      id: `${i}`,
+      title: "Title",
+      description: "Test Description",
+      company: "Test Company",
+      jobProviders: [
+        {
+          jobProvider: "test",
+          url: "/",
+        },
+      ],
+    };
+  });
 
 const data: JobsApiOptions = {
   query: "Web Developer",
