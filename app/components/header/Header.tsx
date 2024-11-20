@@ -145,7 +145,7 @@ const Pages = () => {
 // @TODO: Getting hydration errors
 export default function Header() {
   return (
-    <AppBar position="static">
+    <AppBar position="fixed" sx={{ bgcolor: "primary.dark" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <HomeButton />
