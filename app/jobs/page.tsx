@@ -1,6 +1,6 @@
 import JobCardList from "./JobCardList";
 import { getAIResponse } from "../services/getAiResponse";
-import { getJobs } from "../services/getJobs";
+import { getJobs, testData } from "../services/getJobs";
 import { Job } from "./types";
 import Hero from "../components/Hero";
 import hiddenJob from "./hiddenJob";
@@ -11,7 +11,16 @@ type PageParams = {
 export default async function JobPostingsPage({ searchParams }: PageParams) {
   const params = await searchParams;
   const opts = params.query ? { data: { query: params.query } } : undefined;
-  const jobs = (await getJobs(opts)) || [];
+  // @TODO: Cant't seem to get the AI to give me proper json.
+  const getAIJobs = async () => {
+    const jobs = await getAIResponse(
+      `Provide only valid JSON output without any other text. Give me 10 example jobs for a Web Developer. Follow this JSON example exactly: ${JSON.stringify(testData)}`,
+      "Provide valid JSON output that I can parse in my program",
+    );
+    console.log(jobs);
+    return JSON.parse(jobs);
+  };
+  const jobs = (await getJobs(opts)) || /* (await getAIJobs()) ||*/ [];
 
   // @TODO: Make less Groq calls by updating the description later
   //   - Make Jobs a side menu or different route instead of expanded card.
