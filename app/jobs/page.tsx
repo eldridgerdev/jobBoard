@@ -1,6 +1,7 @@
 import JobCardList from "./JobCardList";
 import { getAIResponse } from "../services/getAiResponse";
 import { getJobs } from "../services/getJobs";
+import Hero from "../components/Hero";
 
 type PageParams = {
   searchParams: Promise<{ [key: string]: string | undefined }>;
@@ -15,8 +16,8 @@ export default async function JobPostingsPage({ searchParams }: PageParams) {
   //     - This should make more sense when doing a Groq AI call only for the needed desc.
   const updatedJobs = await Promise.all(
     jobs.map(async (job) => {
-      const newDesc = await getAIResponse(job.description);
-      // const newDesc = "debugging";
+      // const newDesc = await getAIResponse(job.description);
+      const newDesc = "debugging";
       return {
         ...job,
         description: newDesc,
@@ -29,6 +30,7 @@ export default async function JobPostingsPage({ searchParams }: PageParams) {
   });
   return (
     <>
+      <Hero />
       <h1>JobPostingsPage</h1>
       <JobCardList jobs={updatedJobs} />
     </>
