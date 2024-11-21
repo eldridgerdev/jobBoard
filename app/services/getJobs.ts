@@ -13,6 +13,23 @@ interface JobsApiOptions {
   distance: number;
 }
 
+export const testData: Job[] = new Array(5)
+  .fill(undefined)
+  .map((job: Job, i): Job => {
+    return {
+      id: `${i}`,
+      title: "Title",
+      description: "Test Description",
+      company: "Test Company",
+      jobProviders: [
+        {
+          jobProvider: "test",
+          url: "/",
+        },
+      ],
+    };
+  });
+
 const data: JobsApiOptions = {
   query: "Web Developer",
   location: "United States",
@@ -40,7 +57,8 @@ interface GetJobsOpts {
   };
 }
 const empty = { data: {} };
-export async function getJobs(jobOpts?: GetJobsOpts = empty): Promise<Job[]> {
+export async function getJobs(jobOpts: GetJobsOpts = empty): Promise<Job[]> {
+  // For testing
   const options = {
     ...defaultOpts,
     ...jobOpts,
@@ -54,11 +72,16 @@ export async function getJobs(jobOpts?: GetJobsOpts = empty): Promise<Job[]> {
   const distance = `&distance=${options.data.distance}`;
   const language = `&language=en_US`;
   const remote = `&remote`;
-  const url = `https://${JOBS_API_HOST}/list?${query}${location}${distance}${language}${remote}`;
+  const url = `https://${JOBS_API_HOST}/v2/list?${query}${location}${distance}${language}${remote}`;
   const response = await fetch(url, {
     method: "GET",
     headers: options.headers as HeadersInit,
   });
   const data = await response.json();
+  if (data.jobs.length === 0) {
+    // @TODO: do some real stuff later, toss in some test data for now because the API isn't working
+    data.jobs = testData;
+    console.log(data.jobs);
+  }
   return data.jobs;
 }
